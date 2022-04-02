@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import urlcat from "urlcat";
 
+const BACKEND = process.env.REACT_APP_BACKEND; // "http://localhost:2000";
+console.log(BACKEND);
 function Seed() {
   const [seed, setSeed] = useState([]);
 
   useEffect(() => {
-    fetch("https://krystle-holidays-backend.herokuapp.com/api/holidays/seed")
-      .then((response) => response.json())
+    fetch(`${BACKEND}/api/holidays/seed/`)
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => setSeed(data));
   }, []);
 
